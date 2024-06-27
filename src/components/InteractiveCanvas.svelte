@@ -107,12 +107,15 @@
     >
   </div>
 </div>
-<canvas
-  class="mx-auto cursor-crosshair border-4 shadow-2xl rounded-2xl"
-  bind:this={canvas}
-  width="1000"
-  height="600"
-  on:mousedown={startDrawing}
-  on:mouseup={stopDrawing}
-  on:mousemove={draw}
-></canvas>
+
+<div class="w-full flex justify-center">
+  <canvas
+    class="cursor-crosshair border-4 shadow-2xl rounded-2xl"
+    bind:this={canvas}
+    width="1000"
+    height="600"
+    on:mousedown={startDrawing}
+    on:mouseup={stopDrawing}
+    on:mousemove={draw}
+  ></canvas>
+</div>
