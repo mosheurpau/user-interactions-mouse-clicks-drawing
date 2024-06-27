@@ -7,6 +7,7 @@
   let color = "#ffffff";
   let lineWidth = 5;
   let lineCap = "round";
+  let bgColor = "#000000";
 
   function startDrawing(event) {
     drawing = true;
@@ -39,6 +40,13 @@
 
   function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = bgColor; // Fill the canvas with the selected background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function setDefaultBackground() {
+    ctx.fillStyle = "#000000"; // Default background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
   function updateColor(event) {
@@ -53,19 +61,21 @@
     lineCap = event.target.value;
   }
 
+  function updateBgColor(event) {
+    bgColor = event.target.value;
+    clearCanvas();
+  }
+
   onMount(() => {
     ctx = canvas.getContext("2d");
+    setDefaultBackground();
   });
 </script>
 
-<div class="mx-auto text-center mb-5 flex justify-evenly w-10/12">
-  <div>
-    <input
-      type="color"
-      value={color}
-      on:input={updateColor}
-      class="h-10 w-15"
-    />
+<div class="mx-auto text-center mb-5 flex justify-evenly w-9/12">
+  <div class="flex justify-center">
+    <input type="color" value={color} on:input={updateColor} />
+    <p class="pl-2 font-bold">Color</p>
   </div>
   <div>
     <input
@@ -85,16 +95,20 @@
       <option value="square">Square</option>
     </select>
   </div>
+  <div class="flex justify-center">
+    <input type="color" value={bgColor} on:input={updateBgColor} class="mb-5" />
+    <p class="pl-2 font-bold">background</p>
+  </div>
   <div>
     <button
       on:click={clearCanvas}
-      class="btn bg-green-500 px-5 rounded-3xl text-white py-2 mx-auto hover:bg-slate-600 border-2 border-y-green-900"
+      class="btn text-sm bg-green-500 px-5 rounded-3xl text-white py-1 mx-auto hover:bg-slate-600 border-2 border-white"
       >Clean Drawing</button
     >
   </div>
 </div>
 <canvas
-  class="mx-auto cursor-crosshair border-4 shadow-2xl bg-black rounded-2xl"
+  class="mx-auto cursor-crosshair border-4 shadow-2xl rounded-2xl"
   bind:this={canvas}
   width="1000"
   height="600"
