@@ -6,6 +6,7 @@
   let drawing = false;
   let color = "#ffffff";
   let lineWidth = 5;
+  let lineCap = "round";
 
   function startDrawing(event) {
     drawing = true;
@@ -21,7 +22,7 @@
     if (!drawing) return;
 
     ctx.lineWidth = lineWidth;
-    ctx.lineCap = "round";
+    ctx.lineCap = lineCap;
     ctx.strokeStyle = color;
 
     ctx.lineTo(
@@ -48,12 +49,16 @@
     lineWidth = event.target.value;
   }
 
+  function updateLineCap(event) {
+    lineCap = event.target.value;
+  }
+
   onMount(() => {
     ctx = canvas.getContext("2d");
   });
 </script>
 
-<div class="mx-auto text-center mb-5 flex justify-evenly">
+<div class="mx-auto text-center mb-5 flex justify-evenly w-10/12">
   <div>
     <input
       type="color"
@@ -72,6 +77,13 @@
       class="mb-5"
     />
     <label>{lineWidth}px</label>
+  </div>
+  <div>
+    <select on:change={updateLineCap} class="mb-5">
+      <option value="butt">Butt</option>
+      <option value="round" selected>Round</option>
+      <option value="square">Square</option>
+    </select>
   </div>
   <div>
     <button
