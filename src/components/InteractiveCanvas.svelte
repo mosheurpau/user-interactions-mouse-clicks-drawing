@@ -5,6 +5,7 @@
   let ctx;
   let drawing = false;
   let color = "#ffffff";
+  let lineWidth = 5;
 
   function startDrawing(event) {
     drawing = true;
@@ -19,7 +20,7 @@
   function draw(event) {
     if (!drawing) return;
 
-    ctx.lineWidth = 5;
+    ctx.lineWidth = lineWidth;
     ctx.lineCap = "round";
     ctx.strokeStyle = color;
 
@@ -43,6 +44,10 @@
     color = event.target.value;
   }
 
+  function updateLineWidth(event) {
+    lineWidth = event.target.value;
+  }
+
   onMount(() => {
     ctx = canvas.getContext("2d");
   });
@@ -56,6 +61,17 @@
       on:input={updateColor}
       class="h-10 w-15"
     />
+  </div>
+  <div>
+    <input
+      type="range"
+      min="1"
+      max="80"
+      value={lineWidth}
+      on:input={updateLineWidth}
+      class="mb-5"
+    />
+    <label>{lineWidth}px</label>
   </div>
   <div>
     <button
