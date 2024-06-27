@@ -34,12 +34,22 @@
     );
   }
 
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
   onMount(() => {
     ctx = canvas.getContext("2d");
   });
 </script>
 
->
+<div class="mx-auto text-center">
+  <button
+    on:click={clearCanvas}
+    class="btn bg-green-500 px-5 rounded-3xl text-white py-2 mb-5 mx-auto hover:bg-slate-600 border-2 border-y-green-900"
+    >Clean Drawing</button
+  >
+</div>
 <canvas
   class="mx-auto cursor-crosshair border-4 shadow-2xl"
   bind:this={canvas}
