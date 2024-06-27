@@ -4,6 +4,7 @@
   let canvas;
   let ctx;
   let drawing = false;
+  let color = "#ffffff";
 
   function startDrawing(event) {
     drawing = true;
@@ -20,7 +21,7 @@
 
     ctx.lineWidth = 5;
     ctx.lineCap = "round";
-    ctx.strokeStyle = "#000000";
+    ctx.strokeStyle = color;
 
     ctx.lineTo(
       event.clientX - canvas.offsetLeft,
@@ -38,20 +39,34 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  function updateColor(event) {
+    color = event.target.value;
+  }
+
   onMount(() => {
     ctx = canvas.getContext("2d");
   });
 </script>
 
-<div class="mx-auto text-center">
-  <button
-    on:click={clearCanvas}
-    class="btn bg-green-500 px-5 rounded-3xl text-white py-2 mb-5 mx-auto hover:bg-slate-600 border-2 border-y-green-900"
-    >Clean Drawing</button
-  >
+<div class="mx-auto text-center mb-5 flex justify-evenly">
+  <div>
+    <input
+      type="color"
+      value={color}
+      on:input={updateColor}
+      class="h-10 w-15"
+    />
+  </div>
+  <div>
+    <button
+      on:click={clearCanvas}
+      class="btn bg-green-500 px-5 rounded-3xl text-white py-2 mx-auto hover:bg-slate-600 border-2 border-y-green-900"
+      >Clean Drawing</button
+    >
+  </div>
 </div>
 <canvas
-  class="mx-auto cursor-crosshair border-4 shadow-2xl"
+  class="mx-auto cursor-crosshair border-4 shadow-2xl bg-black rounded-2xl"
   bind:this={canvas}
   width="1000"
   height="600"
