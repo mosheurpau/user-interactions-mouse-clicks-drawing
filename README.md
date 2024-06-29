@@ -1,38 +1,17 @@
-# create-svelte
+# Svelte Drawing Canvas with Tailwind CSS
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This project is a simple drawing application built with Svelte and Tailwind CSS. It allows users to draw on an HTML5 canvas, change the drawing color, line width, line cap, and background color.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Draw on the canvas using mouse events.
+- Select different drawing colors.
+- Adjust the line width for drawing.
+- Change the line cap style.
+- Set the background color of the canvas.
+- Clear the canvas.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### Prerequisites
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- Node.js (v14 or later)
+- npm (v6 or later)
